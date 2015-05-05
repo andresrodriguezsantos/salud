@@ -39,14 +39,10 @@
             <div class="col-md-9">
                 <div class="col-md-12 text-center">
                     <h2 class="text-info">Su Historia Clinica Ahora siempre Disponible</h2>
-                    Ahora como paciente, participará en la construcción de su historia clínica interactiva.
-                    Registre sus datos clínicos, exámenes, comentarios, resultados; manténgalos actualizados y
-                    disponga siempre de su historia clínica portátil en cualquier lugar, en cualquier computador,
-                    tableta y celular.
+
                     <p>
-                        La mejor forma de disponer de la información sin trámites, siempre a la mano y
-                        cuando usted la necesite. Su monitoreo de salud ahora será diferente.
-                        Pruébelo ahora, exíjalo a su profesional de la salud. ¡Es gratuito!
+                        Ahora usted siempre estara enterado de su evolucion medica,
+                        CLINIKBOX se lo garantiza
                     </p>
                 </div>
                 <div class="col-md-8">

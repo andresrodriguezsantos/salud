@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @since 1.0
+ */
 namespace app\modules\paciente;
 
 class paciente extends \yii\base\Module

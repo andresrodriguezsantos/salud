@@ -19,16 +19,6 @@
             </span>
         </div>
         <div class="box-body">
-            <p>
-                <?php if(Yii::$app->user->can('Profesional')): ?>
-                    <?= \yii\helpers\Html::a('Agregar nota al Paciente',['/paciente/historia/addnota','id'=>$paciente->id],['class'=>'btn btn-primary']) ?>
-                <?php endif ?>
-                <?php if (Yii::$app->user->can('Paciente')): ?>
-                    <?= \yii\helpers\Html::a('Agregar nota',['/paciente/home/notas','id'=>$paciente->id],['class'=>'btn btn-primary']) ?>
-                <?php endif ?>
-            </p>
-
-            <br/>
                 <?= \yii\widgets\ListView::widget([
                     'dataProvider' => $historias,
                     'itemOptions' => ['tag' => false],
@@ -46,3 +36,8 @@
         </div>
     </div>
 </div>
+<?php $this->registerJsFile('@web/js/lightbox.js',[
+    'depends' => [\yii\web\JqueryAsset::className()],
+    'position' => \yii\web\View::POS_END,
+]) ?>
+<?php $this->registerCssFile('@web/css/lightbox.css') ?>

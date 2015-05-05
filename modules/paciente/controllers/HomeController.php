@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @since 1.0.0
+ */
 namespace app\modules\paciente\controllers;
 
 use app\models\Historia;
