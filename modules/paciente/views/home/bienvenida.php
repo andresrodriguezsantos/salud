@@ -6,7 +6,6 @@
     <div class="box box-info">
         <div class="box-body" style="overflow: hidden">
             <h3 style="color: #8EC4EC">Bienvenido(a) de Nuevo</h3>
-
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="col-md-4">
@@ -19,8 +18,7 @@
                     </div>
                     <div class="col-md-4">
                         <h5>Factor RH: <strong><?= $usuario->paciente->rh ?></strong></h5>
-                        <h5>Edad: <strong><?= \app\shelper\Util::edad($usuario->paciente->fechanacimiento) ?></strong>
-                        </h5>
+                        <h5>Edad: <strong><?= \app\shelper\Util::edad($usuario->paciente->fechanacimiento) ?></strong></h5>
                         <h5>Contacto Personal: <strong><?= $usuario->paciente->telefonocelular ?></strong></h5>
                     </div>
                     <div class="col-md-4">
@@ -33,8 +31,8 @@
         <div class="box-body" style="overflow: hidden">
             <div class="col-md-3">
                 <ul class="list-group">
-                    <li class="list-group-item"><?= \yii\helpers\Html::a('Historia', ['/paciente/home/historia/', 'id' => $usuario->paciente->id], ['class' => 'menu-btn']) ?></li>
-                    <li class="list-group-item"><?= \yii\helpers\Html::a('Anotación', \yii\helpers\Url::base() . "/paciente/home/notas", ['class' => 'menu-btn']) ?></li>
+                    <li class="list-group-item"><?= \yii\helpers\Html::a('Historia', ['/paciente/home/historia/','id'=>$usuario->paciente->id], ['class' => 'menu-btn']) ?></li>
+                    <li class="list-group-item"><?= \yii\helpers\Html::a('Anotación', \yii\helpers\Url::base() ."/paciente/home/notas", ['class' => 'menu-btn']) ?></li>
                     <li class="list-group-item"><?= \yii\helpers\Html::a('Actualizar Datos', \yii\helpers\Url::base() . '/paciente/perfil', ['class' => 'menu-btn']) ?></li>
                 </ul>
             </div>

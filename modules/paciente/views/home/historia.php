@@ -19,12 +19,21 @@
             </span>
         </div>
         <div class="box-body">
+            <p>
+                <?php if(Yii::$app->user->can('Profesional')): ?>
+                    <?= \yii\helpers\Html::a('Agregar nota al Paciente',['/paciente/historia/addnota','id'=>$paciente->id],['class'=>'btn btn-primary']) ?>
+                <?php endif ?>
+                <?php if (Yii::$app->user->can('Paciente')): ?>
+                    <?= \yii\helpers\Html::a('Agregar nota',['/paciente/home/notas','id'=>$paciente->id],['class'=>'btn btn-primary']) ?>
+                <?php endif ?>
+            </p>
+
             <br/>
-            <?= \yii\widgets\ListView::widget([
-                'dataProvider' => $historias,
-                'itemOptions' => ['tag' => false],
-                'itemView' => '_historia',
-                'layout' => "{summary}\n
+                <?= \yii\widgets\ListView::widget([
+                    'dataProvider' => $historias,
+                    'itemOptions' => ['tag' => false],
+                    'itemView' =>'_historia',
+                    'layout' => "{summary}\n
                     <ul class=\"timeline\">
                     {items}
                     <li>
@@ -32,7 +41,8 @@
                     </li>
                     </ul>
                     {pager}\n"
-            ]) ?>
+                ]) ?>
+
         </div>
     </div>
 </div>
