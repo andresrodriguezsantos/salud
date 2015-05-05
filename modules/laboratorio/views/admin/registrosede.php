@@ -1,10 +1,20 @@
 <?php
 
+<<<<<<< HEAD
 use yii\bootstrap\Alert;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+=======
+use app\models\Departamento;
+use app\models\Pais;
+use yii\bootstrap\Alert;
+use yii\bootstrap\Modal;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+>>>>>>> origin/master
 /* @var $this yii\web\View */
 /* @var $model app\models\laboratorio\labsede */
 /* @var $form ActiveForm */

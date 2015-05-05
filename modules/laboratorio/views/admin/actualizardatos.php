@@ -1,11 +1,17 @@
 <?php
 use app\models\Departamento;
 use app\models\medicamento\MedPresentacion;
+use app\models\medicamento\MedTipoTerapeutico;
 use app\models\Pais;
-use yii\bootstrap\ActiveForm;
+use yii\base\Controller;
+use yii\bootstrap\Alert;
+use yii\bootstrap\Modal;
 use yii\helpers\ArrayHelper;
+use yii\helpers\BaseUrl;
 use yii\helpers\Html;
-
+use yii\web\JqueryAsset;
+use yii\web\View;
+use yii\bootstrap\ActiveForm;
 /** @var $presentacion MedPresentacion */
 /* @var array $btn */
 /* @var array $url*/

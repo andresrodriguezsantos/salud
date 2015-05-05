@@ -7,13 +7,13 @@ namespace app\modules\optometria\controllers;
 use app\models\Certificado;
 use app\models\Historia;
 use app\models\medicamento\OptPrescripcionMed;
-use kartik\mpdf\Pdf;
 use mPDF;
 use Yii;
 use yii\db\Expression;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\web\Controller;
+use kartik\mpdf\Pdf;
 use yii\web\HttpException;
 
 
