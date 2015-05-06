@@ -36,8 +36,12 @@
         </div>
     </div>
 </div>
-<?php $this->registerJsFile('@web/js/lightbox.js',[
+<?php $this->registerJsFile('@web/fanci/jquery.fancybox.js',[
     'depends' => [\yii\web\JqueryAsset::className()],
     'position' => \yii\web\View::POS_END,
 ]) ?>
-<?php $this->registerCssFile('@web/css/lightbox.css') ?>
+<?php $this->registerCssFile('@web/fanci/jquery.fancybox.css') ?>
+<?php $this->registerJsFile('@web/js/historia.js',[
+    'depends' => [\yii\web\JqueryAsset::className()],
+    'position' => \yii\web\View::POS_END,
+]) ?>

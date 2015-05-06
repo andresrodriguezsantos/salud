@@ -15,6 +15,7 @@ use app\models\Paciente;
 use app\models\Profesional;
 use app\models\ProfesionalEps;
 use app\models\Usuario;
+use app\rules\HisOwnerUser;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -237,19 +238,6 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
-    /*public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
-        }
-    }*/
     public function actionContact()
     {
         $model = new ContactForm();
@@ -344,5 +332,11 @@ class SiteController extends Controller
             return 'Usuario Registrado';
         } else
             return null;
+    }
+
+    public function actionRbac()
+    {
+        $auth = Yii::$app->authManager;
+        $rule = new HisOwnerUser();
     }
 }

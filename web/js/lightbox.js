@@ -199,10 +199,10 @@
 
                 $preloader = $(preloader);
 
-                $image.width(preloader.width);
-                console.log(preloader.width + ' - ancho');
-                $image.height(preloader.height);
-                console.log(preloader.height + ' - alto');
+                $image.width($preloader.width);
+                console.log($preloader.width + ' - ancho');
+                $image.height($preloader.height);
+                console.log($preloader.height + ' - alto');
 
                 /*if (self.options.fitImagesInViewport) {
                  console.log("ok");
@@ -253,16 +253,16 @@
 
             var oldWidth = this.$outerContainer.outerWidth();
             var oldHeight = this.$outerContainer.outerHeight();
-            var newWidth = imageWidth + this.containerLeftPadding + this.containerRightPadding;
+            var newWidth = (imageWidth) + this.containerLeftPadding + this.containerRightPadding;
             var newHeight = imageHeight + this.containerTopPadding + this.containerBottomPadding;
-
+            //newWidth = newWidth*2;
             function postResize() {
                 self.$lightbox.find('.lb-dataContainer').width(newWidth);
                 self.$lightbox.find('.lb-prevLink').height(newHeight);
                 self.$lightbox.find('.lb-nextLink').height(newHeight);
                 self.showImage();
             }
-
+            console.log('new whid'+newWidth);
             if (oldWidth !== newWidth || oldHeight !== newHeight) {
                 this.$outerContainer.animate({
                     width: newWidth,

@@ -63,6 +63,11 @@ class MainController extends Controller
                         'allow' => true,
                         'roles' => ['Optometra']
                     ],
+                    [
+                        'actions'=>['addcontrol'],
+                        'allow'=>true,
+                        'roles'=>'paciente'
+                    ]
                 ]
             ]
         ];
@@ -900,6 +905,7 @@ class MainController extends Controller
     public function actionAddcontrol($id)
     {
         if (Yii::$app->user->can('Paciente')) {
+            /** @var Optometria $optometria */
             $optometria = Optometria::findOne($id);
             if ($optometria->historia->paciente->idusuario != Yii::$app->user->getId()) {
                 return new UnauthorizedHttpException('no tiene permitido ejecutar esta acción');

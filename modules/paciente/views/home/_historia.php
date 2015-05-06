@@ -22,12 +22,32 @@ use yii\helpers\Html;
         ?>
         <i class="glyphicon glyphicon-eye-open" title="Historia clinica de optometria"></i>
         <div class="timeline-item">
-            <span class="time"><i
+            <span class="time"
+                ><i
                     class="glyphicon glyphicon-time"></i> <?= date('h:i a', strtotime($model->fecha)) ?></span>
-
             <h3 class="timeline-header"><?= Html::a('Historia Clinica de Optometria', ['/optometria/main/view', 'id' => $object->id]) ?></h3>
-
             <div class="timeline-body">
+                <?php if (Yii::$app->user->can('Optometra', ['optometria' => $object])): ?>
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-xs btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            Opciones <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><?= Html::a('<i class="glyphicon glyphicon-edit"></i> Agregar control',
+                                    ['/optometria/main/addcontrol', 'id' => $object->id]) ?></li>
+                            <li class="divider"></li>
+                            <li><?= Html::a('Remitir',['certificados/remitir', 'id' => $object->historia_id]) ?></li>
+                            <li><?= Html::a('Examenes',['certificados/examen', 'id' => $object->historia_id]) ?></li>
+                            <li><?= Html::a('Prescribir Medicamento',['/medicamento/admin/prescripcionmedica/', 'id' => $object->historia_id]) ?></li>
+                            <li><?= Html::a('Expedir Certificado',['certificados/index/', 'id' => $object->historia_id]) ?></li>
+                            <li><?= Html::a('Prescribir anteojos',['certificados/prescribiranteojos/', 'id' => $object->historia_id]) ?></li>
+                        </ul>
+                    </div>
+                <?php elseif(Yii::$app->user->can('Paciente')): ?>
+                    <?= Html::a('<i class="glyphicon glyphicon-edit"></i> Agregar control',
+                        ['/optometria/main/addcontrol', 'id' => $object->id],['class'=>'btn btn-info btn-xs pull-right']) ?>
+                <?php endif; ?>
+
                 <p>
                     <strong>Profesional:</strong><?= $object->historia->profesional->usuario->nombres . ' ' . $object->historia->profesional->usuario->apellidos ?>
                 </p>
@@ -41,64 +61,29 @@ use yii\helpers\Html;
                 <p>
                     <?php $controles = $object->controles;
                     if (!empty($controles)):?>
-                <ul class="timeline">
-                    <?php foreach ($controles as $key => $control): ?>
-
-                        <li>
-                            <i class="glyphicon glyphicon-edit" title="Control"></i>
-
-                            <div class="timeline-item">
-
-                            <span class="time">
-                                <i class="glyphicon glyphicon-tima"></i> <?= date('d/m/Y h:i a', strtotime($control->fecha)) ?>
-                            </span>
-
-                                <div class="timeline-header">
-                                    <h4>Control</h4>
+                    <?= \yii\bootstrap\Collapse::widget([
+                            'items'=>[
+                                [
+                                'label'=> 'Controles',
+                                'content'=>'<div class="box box-default">
+                                <div class="box-body">
+                                    <br/><br/><br/><br/><br/>
                                 </div>
-                                <div class="timeline-body">
-                                    <p class="text-info"><?= $control->nota ?></p>
-                                    <?php $pics = \yii\helpers\Json::decode($control->urlimg);
-                                    if (!empty($pics)):
-                                        ?>
-                                        <?php foreach ($pics as $key2 => $pic): ?>
-                                        <p><?= Html::a('<i class="glyphicon glyphicon-picture"></i> Imagen de control #' . ($key2 + 1), '@web/' . $pic, ['data-lightbox' => 'image-' . $key, 'data-title' => $control->nota]) ?></p>
-                                    <?php endforeach ?>
-                                    <?php endif ?>
-                                </div>
-                            </div>
-                        </li>
-                    <?php endforeach; ?>
-                    <li>
-                        <i class="glyphicon glyphicon-time"></i>
-                    </li>
-                </ul>
+                                <div class="overlay"></div>
+                                <div class="loading-img"></div>
+                            </div>',
+                                   'options'=>[
+                                       'data'=>['optid'=>$object->id,'load'=>0]
+                                   ]
+                                ]
+                            ]
+                        ]) ?>
                 <?php endif ?>
             </div>
 
             <div class='timeline-footer'>
-                <?php if (Yii::$app->user->can('Optometra', ['optometria' => $object]) or Yii::$app->user->can('Paciente')): ?>
-                    <?= Html::a('<i class="glyphicon glyphicon-edit"></i> Agregar control', ['/optometria/main/addcontrol', 'id' => $object->id],['class'=>'btn btn-primary btn-xs']) ?>
-                <?php endif ?>
+
             </div>
         </div>
     <?php endif ?>
-    <?php /** @var \app\models\PacienteControl $object */
-    if ($object instanceof \app\models\PacienteControl): ?>
-        <i class="glyphicon glyphicon-edit"></i>
-        <div class="timeline-item">
-            <span class="time"><i
-                    class="glyphicon glyphicon-time"></i> <?= date('h:i a', strtotime($model->fecha)) ?></span>
-
-            <h3 class="timeline-header">Nota : </h3>
-
-            <div class="timeline-body">
-                <?= $object->notas ?>
-                <?php if (!empty($object->urlimg)): ?>
-                    <?= Html::img(\yii\helpers\Url::base() . '/' . $object->urlimg) ?>
-                <?php endif; ?>
-            </div>
-        </div>
-    <?php endif; ?>
-
 </li>

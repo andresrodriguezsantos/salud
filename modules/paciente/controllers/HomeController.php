@@ -5,6 +5,7 @@
 namespace app\modules\paciente\controllers;
 
 use app\models\Historia;
+use app\models\optometria\Optometria;
 use app\models\Paciente;
 use app\models\PacienteControl;
 use app\models\Profesional;
@@ -30,14 +31,14 @@ class HomeController extends Controller
                 'rules' => [
                     [
                         'actions' => [
-                            'index', 'historia', 'registrar'
+                            'index', 'historia', 'registrar','control','test'
                         ],
                         'allow' => true,
                         'roles' => ['Profesional']
                     ],
                     [
                         'actions' => [
-                            'index', 'historia', 'notas'
+                            'index', 'historia', 'notas','control'
                         ],
                         'allow' => true,
                         'roles' => ['Paciente']
@@ -134,6 +135,8 @@ class HomeController extends Controller
                     $user->save();
                     $paciente->idusuario = $user->id;
                     $paciente->save();
+                    $auth = Yii::$app->authManager;
+                    $auth->assign($auth->getRole('Paciente'),$user->id);
                     Yii::$app->session->setFlash('success', 'Nuevo paciente reistrado correctamente');
                     return $this->redirect(['historia', 'id' => $paciente->id]);
                 } else
@@ -144,6 +147,21 @@ class HomeController extends Controller
             'usuario' => $user,
             'paciente' => $paciente
         ]);
+    }
+
+    public function actionControl()
+    {
+        /** @var Optometria $optometria */
+        $optometria = Optometria::findOne(Yii::$app->request->get('id'));
+        return $this->renderPartial('_control',[
+            'controles'=>$optometria->controles
+        ]);
+    }
+
+    public function actionTest()
+    {
+        $auth = Yii::$app->authManager;
+        $auth->assign($auth->getRole('Paciente'),3);
     }
 
 }
