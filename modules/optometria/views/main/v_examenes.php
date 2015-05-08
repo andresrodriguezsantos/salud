@@ -7,12 +7,14 @@
     <div class="panel-body">
         <?php $tab = \yii\bootstrap\Tabs::begin(); ?>
         <?php foreach ($optometria->optExamenexterno as $key => $model): ?>
-            <?php $tab->items[] = [
-                'label' => ucwords($model->tipo),
-                'content' => $this->render('examenexterno/v_examen', [
-                    'model' => $model,
-                ])
-            ] ?>
+            <?php if($model->tipo != 'biomicroscopía'): ?>
+                <?php $tab->items[] = [
+                    'label' => ucwords($model->tipo),
+                    'content' => $this->render('examenexterno/v_examen', [
+                        'model' => $model,
+                    ])
+                ] ?>
+            <?php endif ?>
         <?php endforeach ?>
         <?php /*$tab->items[] = [
             'label'=>'Agregar',

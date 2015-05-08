@@ -128,7 +128,7 @@ class MainController extends Controller
         $covertest = new OptCoverTest();
 
         $biomicroscopia = [
-            'biomicroscopia' => new OptExamenexterno(),
+            'biomicroscopía' => new OptExamenexterno(),
         ];
 
         $examenexterno = [
@@ -199,7 +199,7 @@ class MainController extends Controller
 
         $examenexterno = [
             'fondo de ojo' => new OptExamenexterno(),
-            'biomicroscopia' => new OptExamenexterno(),
+            'biomicroscopía' => new OptExamenexterno(),
             'complementario' => new OptExamenexterno(),
         ];
         if (Yii::$app->request->isPost) {

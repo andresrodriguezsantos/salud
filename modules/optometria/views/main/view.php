@@ -227,7 +227,12 @@ $this->title = 'Optometría id - ' . $optometria->id;
                     ];
                 endif
                 ?>
-
+                <?php $collapse->items[] =[
+                    'label'=>'Biomicroscopía',
+                    'content'=>$this->render('examenexterno/v_examen',[
+                        'model'=>OptometriaHel::CBiomicroscopia($optometria)
+                    ])
+                ] ?>
                 <?php if ($optometria->optExamenexterno) {
                     $collapse->items[] = [
                         'label' => 'Examen Externo',
@@ -250,7 +255,7 @@ $this->title = 'Optometría id - ' . $optometria->id;
                 <?php $collapse->end(); ?>
                 <div class="btn-group pull-right" role="group">
                     <?= Html::a('Remitir', ['certificados/remitir', 'id' => $optometria->historia_id], ['class' => 'btn btn-info', 'role' => 'group']) ?>
-                    <?= Html::a('Examenes', ['certificados/examen', 'id' => $optometria->historia_id], ['class' => 'btn btn-info', 'role' => 'group']) ?>
+                    <?= Html::a('Examenes', ['certificados/consulta', 'id' => $optometria->historia_id,'tipo'=>'examen'], ['class' => 'btn btn-info', 'role' => 'group']) ?>
                     <?= Html::a('Prescribir Medicamento', ['/medicamento/admin/prescripcionmedica/', 'id' => $optometria->historia_id], ['class' => 'btn btn-info', 'role' => 'group']) ?>
                     <?= Html::a('Expedir Certificado', ['certificados/index/', 'id' => $optometria->historia_id], ['class' => 'btn btn-info', 'role' => 'group']) ?>
                     <?= Html::a('Prescribir anteojos', ['certificados/prescribiranteojos/', 'id' => $optometria->historia_id], ['class' => 'btn btn-info', 'role' => 'group']) ?>

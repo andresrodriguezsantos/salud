@@ -9,7 +9,7 @@ use yii\helpers\Html;
             <?php if ($model->odurlimg): ?>
                 <?= Html::tag('h4', $model->getAttributeLabel('odurlimg')) ?>
                 <div class="col-md-offset-2 col-md-8">
-                    <?= Html::img(\yii\helpers\Url::base() . '/' . $model->odurlimg) ?>
+                    <?= Html::img('@web/' . $model->odurlimg) ?>
                 </div>
 
             <?php else: ?>
@@ -33,7 +33,7 @@ use yii\helpers\Html;
             <?php if ($model->oiurlimg): ?>
                 <?= Html::tag('h4', $model->getAttributeLabel('oiurlimg')) ?>
                 <div class="col-md-offset-2 col-md-8">
-                    <?= Html::img(\yii\helpers\Url::base() . '/' . $model->oiurlimg) ?>
+                    <?= Html::img('@web/' . $model->oiurlimg) ?>
                 </div>
             <?php else: ?>
                 <?= \yii\bootstrap\Alert::widget([
