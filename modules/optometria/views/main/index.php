@@ -139,8 +139,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'label' => 'Biomicroscopía',
                         'content' => $this->render('examenexterno/exbiomicroscopia', [
-                            'model' => $biomicroscopia['biomicroscopia'],
-                            'key' => 'biomicroscopia',
+                            'model' => $biomicroscopia['biomicroscopía'],
+                            'key' => 'biomicroscopía',
                             'form' => $form
                         ]),
                         'contentOptions' => ['class' => '']

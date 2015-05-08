@@ -64,7 +64,7 @@ use yii\helpers\Html;
                             <li><?= Html::a('<i class="glyphicon glyphicon-edit"></i> Agregar control',
                                     ['/optometria/main/addcontrol', 'id' => $object->id]) ?></li>
                             <li class="divider"></li>
-                            <li><?= Html::a('Remitir', ['/optometria/certificados/remitir', 'id' => $object->historia_id]) ?></li>
+                            <li><?= Html::a('Remitir', ['/optometria/certificados/consulta', 'id' => $object->historia_id,'tipo'=>'remision']) ?></li>
                             <li><?= Html::a('Examenes', ['/optometria/certificados/consulta', 'id' => $object->historia_id, 'tipo' => 'examen']) ?></li>
                             <li><?= Html::a('Prescribir Medicamento', ['/medicamento/admin/prescripcionmedica/', 'id' => $object->historia_id]) ?></li>
                             <li><?= Html::a('Expedir Certificado', ['/optometria/certificados/index/', 'id' => $object->historia_id]) ?></li>
@@ -94,13 +94,14 @@ use yii\helpers\Html;
                             'items' => [
                                 [
                                     'label' => 'Controles',
-                                    'content' => '<div class="box box-default">
-                                <div class="box-body">
-                                    <br/><br/><br/><br/><br/>
-                                </div>
-                                <div class="overlay"></div>
-                                <div class="loading-img"></div>
-                            </div>',
+                                    'content' => '
+                                    <div class="box box-default">
+                                        <div class="box-body">
+                                            <br/><br/><br/><br/><br/>
+                                        </div>
+                                        <div class="overlay"></div>
+                                        <div class="loading-img"></div>
+                                    </div>',
                                     'options' => [
                                         'data' => ['optid' => $object->id, 'load' => 0]
                                     ]

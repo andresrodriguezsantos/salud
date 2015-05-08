@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\models\optometria\Optometria;
 use Yii;
 
 /**
@@ -9,7 +10,7 @@ use Yii;
  *
  * @property string $id
  * @property string $idprofesionalemisor
- * @property string $idprofesionalreceptor
+ * @property string $
  * @property string $fechasolicitud
  * @property integer $aceptado
  * @property integer $estado
@@ -17,8 +18,7 @@ use Yii;
  * @property string $optometria_id
  *
  * @property Optometria $optometria
- * @property Profesional $idprofesionalemisor0
- * @property Profesional $idprofesionalreceptor0
+ * @property Profesional $profesionalemisor
  */
 class Permisohistoria extends \yii\db\ActiveRecord
 {
@@ -36,8 +36,8 @@ class Permisohistoria extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idprofesionalemisor', 'idprofesionalreceptor', 'fechasolicitud', 'aceptado', 'estado', 'nota', 'optometria_id'], 'required'],
-            [['idprofesionalemisor', 'idprofesionalreceptor', 'aceptado', 'estado', 'optometria_id'], 'integer'],
+            [['idprofesionalemisor', 'fechasolicitud', 'aceptado', 'estado', 'nota', 'optometria_id'], 'required'],
+            [['idprofesionalemisor', 'aceptado', 'estado', 'optometria_id'], 'integer'],
             [['fechasolicitud'], 'safe'],
             [['nota'], 'string', 'max' => 250]
         ];
@@ -51,7 +51,6 @@ class Permisohistoria extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'idprofesionalemisor' => 'profesional emisor',
-            'idprofesionalreceptor' => 'profesional receptor',
             'fechasolicitud' => 'fecha de solicitud',
             'aceptado' => 'aceptado',
             'estado' => 'estado',
@@ -71,16 +70,8 @@ class Permisohistoria extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getIdprofesionalemisor0()
+    public function getProfesionalemisor()
     {
         return $this->hasOne(Profesional::className(), ['id' => 'idprofesionalemisor']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIdprofesionalreceptor0()
-    {
-        return $this->hasOne(Profesional::className(), ['id' => 'idprofesionalreceptor']);
     }
 }

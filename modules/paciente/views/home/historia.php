@@ -47,13 +47,37 @@ if(Yii::$app->user->can('Optometra'))
     $pin = Modal::begin([
         'id'=>'get-pin',
         'header'=>'<h4>Solicitud de pin</h4>',
-        'footer'=>Html::button('Validar',['class'=>'btn btn-success','id','send-pin']).
+        'footer'=>Html::button('Validar',['class'=>'btn btn-success','id'=>'send-pin']).
         Html::button('Cancelar', ['data-dismiss' => 'modal', 'class' => 'btn btn-default'])
     ]);
 ?>
-<?= Html::label('Escriba el pin del Usuario','pin') ?>
-<?= Html::textInput('pin',null,['class'=>'from-control','id'=>'pin']) ?>
+
+    <div class="box box-solid" id="pin-body">
+        <div class="box-body">
+            <?= Html::label('Escriba el pin del Usuario','pin') ?>
+            <?= Html::textInput('pin',null,['class'=>'form-control','id'=>'pin']) ?>
+            <?= Html::tag('div','',['id'=>'result-pin','class'=>'text-success']) ?>
+        </div>
+    </div>
 <?php $pin->end() ?>
+
+<?php
+$pin = Modal::begin([
+    'id'=>'get-solicitud',
+    'header'=>'<h4>Solicitud de permiso</h4>',
+    'footer'=>Html::button('Validar',['class'=>'btn btn-success','id'=>'send-solicitud']).
+        Html::button('Cancelar', ['data-dismiss' => 'modal', 'class' => 'btn btn-default'])
+]);
+?>
+    <div class="box box-solid" id="sol-body">
+        <div class="box-body">
+            <?= Html::label('Escriba una Nota para el profesional.','solicitud') ?>
+            <?= Html::textarea('nota',null,['class'=>'form-control','id'=>'solicitud']) ?>
+            <?= Html::tag('div','',['id'=>'result-sol','class'=>'text-success']) ?>
+        </div>
+    </div>
+<?php $pin->end() ?>
+
 <?php $this->registerJsFile('@web/fanci/jquery.fancybox.js',[
     'depends' => [\yii\web\JqueryAsset::className()],
     'position' => \yii\web\View::POS_END,
