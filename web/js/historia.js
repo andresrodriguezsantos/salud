@@ -1,4 +1,32 @@
 $(document).ready(function(){
+    $('a.optometria').click(function(){
+        console.log('click en link');
+        var perm = $(this).attr('data-perm');
+        var optid = $(this).attr('data-optid');
+        if(perm == 2 || perm == 3){
+            return showSolicitudpin(optid);
+        }else if(perm == 4){
+            return showSolicitudpermiso(optid);
+        }
+        return true;
+    });
+
+    function showSolicitudpin(id){
+        $('#get-pin').modal('show');
+        $('#send-pin').click(function(){
+            $.get('/salud/web/paciente/getpin',{id:id}).success(function(data){
+                return data;
+            });
+        });
+        return false;
+    }
+
+    function showSolicitudpermiso(id){
+
+    }
+
+
+
     $('.collapse-toggle').click(function(){
         var container =$($(this).attr('data-parent')).children();
         var panel = $(container).find('.panel-body');

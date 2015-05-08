@@ -28,7 +28,7 @@ use yii\helpers\Html;
                         ?>
                         <?php foreach ($pics as $key2 => $pic): ?>
                         <p><?= Html::a('<i class="glyphicon glyphicon-picture"></i> Imagen de control #'
-                                . ($key2 + 1), '@web/' . $pic, ['rel' => 'image-' . $key, 'title' => $control->nota,'class'=>'fancybox']) ?></p>
+                                . ($key2 + 1), '@web/' . $pic, ['rel' => 'image-' .$control->id, 'title' => $control->nota,'class'=>'fancybox']) ?></p>
                     <?php endforeach ?>
                     <?php endif ?>
                 </div>
